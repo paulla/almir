@@ -137,18 +137,11 @@ class BConsole(object):
 
         jobs = []
         for line in unparsed_jobs.split('\n'):
+            keys = ('level', 'type', 'priority', 'date', 'time', 'name', 'volume')
             if not line.strip():
                 continue
 
-            jobs.append({
-                         'level': line[:14].strip(),
-                         'type': line[14:23].strip(),
-                         'priority': line[23:28].strip(),
-                         'date': line[28:38].strip(),
-                         'time': line[38:44].strip(),
-                         'name': line[47:67].strip(),
-                         'volume': line[67:].strip(),
-            })
+            jobs.append(dict(zip(keys, line.split())))
 
         return jobs
 
